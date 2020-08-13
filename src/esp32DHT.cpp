@@ -137,7 +137,7 @@ void DHT::_handleData(DHT* instance) {
 }
 
 void DHT::_decode(rmt_item32_t* data, int numItems) {
-  if (numItems < 42) {
+  if (numItems < 41) {
     _status = 5;
   } else if (numItems > 42) {
     _status = 6;
@@ -155,11 +155,6 @@ void DHT::_decode(rmt_item32_t* data, int numItems) {
         _status = 3;  // DATA error
         return;
       }
-    }
-    if (_data[4] == ((_data[0] + _data[1] + _data[2] + _data[3]) & 0xFF)) {
-      _status = 0;
-    } else {
-      _status = 4;  // checksum error
     }
   }
 }
